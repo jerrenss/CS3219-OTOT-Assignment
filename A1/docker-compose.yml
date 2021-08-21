@@ -1,0 +1,16 @@
+
+version: "3"
+services:
+  go-app:
+    container_name: go-app
+    build: ./go-app
+    restart: always
+    environment:
+      GIN_MODE: debug
+  nginx:
+    container_name: nginx
+    build: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - "go-app"
