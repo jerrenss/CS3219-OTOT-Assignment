@@ -16,11 +16,15 @@ This task is completed with a local Kubernetes cluster running on Docker Desktop
 
         docker build -t a2-custom-nginx .
 
-5. Administer the deployment and service with kubectl CLI
+5. Navigate to /A2
+
+        cd ..
+
+6. Administer the deployment and service with kubectl CLI
 
         kubectl apply -f configuration.yml
 
-6. Access the web application via http://localhost:31000
-6. Once development work is complete, tear down configuration with kubectl
+7. Access the web application via http://localhost:31000
+8. Once development work is complete, tear down configuration with kubectl
 
         kubectl delete -f configuration.yml
