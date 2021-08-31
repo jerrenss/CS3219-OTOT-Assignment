@@ -9,3 +9,8 @@ services:
       - 4000:4000
     volumes:
       - ./server/:/usr/app/
+  cache:
+    image: redis
+    container_name: cache
+    ports:
+    - "6379:6379"
