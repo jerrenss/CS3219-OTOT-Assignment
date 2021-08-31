@@ -78,7 +78,7 @@ func SignoutUser(c *gin.Context) {
 	// Delete JWT token
 	token, err := models.DeleteToken()
 	if err != nil {
-		c.JSON(http.StatusUnprocessableEntity, "Unable to delete JWT token")
+		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, "Unable to delete JWT token")
 		return
 	}
 
