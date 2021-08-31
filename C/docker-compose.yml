@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: server
+    ports:
+      - 4000:4000
+    volumes:
+      - ./server/:/usr/app/
+  database:
+    image: postgres:12-alpine
+    container_name: database
+    restart: always
+    environment:
+      POSTGRES_USER: OTOT-C-USER
+      POSTGRES_PASSWORD: OTOT-C-PW
+      POSTGRES_DB: OTOT-C
+    volumes:
+      # - ./server/migrations:/docker-entrypoint-initdb.d/
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
+
+volumes:
+  db-data:
