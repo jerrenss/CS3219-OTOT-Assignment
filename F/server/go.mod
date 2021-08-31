@@ -1,4 +1,4 @@
-module b2-server
+module f-server
 
 go 1.16
 
