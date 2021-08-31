@@ -19,4 +19,4 @@ This task is completed with a local Go and Redis server. A GET request is sent t
 5. Access the APIs via http://localhost:4000/api/posts and http://localhost/api/posts-reset 
 6. Once development work is complete, tear down containers with Docker Compose
 
-        docker-compose down
+        docker-compose down -v
