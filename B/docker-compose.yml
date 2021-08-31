@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: client
+    restart: always
+    volumes:
+      - ./client:/app
+      - client-mods:/app/node_modules
+      - client-next:/app/.next
+    ports:
+      - 3000:3000
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: server
+    ports:
+      - 4000:4000
+    volumes:
+      - ./server/:/usr/app/
+
+volumes:
+  client-mods:
+  client-next:
