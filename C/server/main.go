@@ -1,8 +1,8 @@
 package main
 
 import (
-	"c-server/models"
 	"c-server/controllers"
+	"c-server/models"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

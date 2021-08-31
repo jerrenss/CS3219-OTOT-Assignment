@@ -3,8 +3,8 @@ package models
 import (
 	"github.com/dgrijalva/jwt-go"
 	"golang.org/x/crypto/bcrypt"
-	"time"
 	"log"
+	"time"
 )
 
 const ACCESS_SECRET = "not-very-secretive"

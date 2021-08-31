@@ -11,7 +11,7 @@ type CreateUserInput struct {
 	Last_Name  string `json:"last_name" binding:"required"`
 	Username   string `json:"username" binding:"required"`
 	Password   string `json:"password" binding:"required"`
-	Role   uint8   `json:"role" binding:"required"`
+	Role       uint8  `json:"role" binding:"required"`
 }
 
 type LoginUserInput struct {
@@ -58,7 +58,7 @@ func LoginUser(c *gin.Context) {
 		return
 	}
 
-	err = models.VerifyPassword(user.Password_Hash, input.Password); 
+	err = models.VerifyPassword(user.Password_Hash, input.Password)
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Invalid password!"})
 		return

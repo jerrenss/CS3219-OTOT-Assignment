@@ -1,10 +1,10 @@
 package models
 
 import (
-	"log"
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"log"
 )
 
 var DB *gorm.DB
@@ -25,7 +25,6 @@ func InitDB() {
 	DB = instance
 	log.Println("Connected to PostgreSQL!")
 
-	
 	DB.LogMode(false)
 	DB.AutoMigrate(&User{})
 }
