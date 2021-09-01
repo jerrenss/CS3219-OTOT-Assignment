@@ -4,8 +4,9 @@ import (
 	"c-server/controllers"
 	"c-server/middlewares"
 	"c-server/models"
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -24,7 +25,6 @@ func main() {
 
 	Router.GET("/api/mock/user", middlewares.ValidateLogin(), controllers.WelcomeUser)
 	Router.GET("/api/mock/admin", middlewares.ValidateLogin(), middlewares.ValidateAdmin(), controllers.WelcomeAdmin)
-	Router.GET("/api/mock/superadmin", middlewares.ValidateLogin(), controllers.WelcomeSuperadmin)
 
 	Router.Run(":4000")
 }

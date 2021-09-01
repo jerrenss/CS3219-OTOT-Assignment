@@ -1,15 +1,16 @@
 package models
 
 import (
-	"github.com/dgrijalva/jwt-go"
-	"golang.org/x/crypto/bcrypt"
 	"log"
 	"time"
+
+	"github.com/dgrijalva/jwt-go"
+	"golang.org/x/crypto/bcrypt"
 )
 
 const ACCESS_SECRET = "not-very-secretive"
 
-// Roles: 1 - regular user, 2 - admin, 3 - superadmin
+// Roles: 1 - regular user, 2 - admin
 type User struct {
 	User_Id       uint64    `json:"user_id" gorm:"primary_key"`
 	CreatedAt     time.Time `json:"created_at" gorm:"default:CURRENT_TIMESTAMP"`

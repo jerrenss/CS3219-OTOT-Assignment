@@ -1,8 +1,9 @@
 package controllers
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 func WelcomeUser(c *gin.Context) {
@@ -11,8 +12,4 @@ func WelcomeUser(c *gin.Context) {
 
 func WelcomeAdmin(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": "Welcome, Admin!"})
-}
-
-func WelcomeSuperadmin(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"data": "Welcome, Superadmin!"})
 }
