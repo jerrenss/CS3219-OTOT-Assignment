@@ -1,28 +1,33 @@
 version: "3"
 
 services:
-  client:
-    build:
-      context: ./client
-      dockerfile: Dockerfile
-    container_name: client
-    restart: always
-    volumes:
-      - ./client:/app
-      - client-mods:/app/node_modules
-      - client-next:/app/.next
-    ports:
-      - 3000:3000
   server:
     build:
-      context: ./server
-      dockerfile: Dockerfile
+        context: ./server
+        dockerfile: Dockerfile
     container_name: server
+    restart: always
+    environment:
+      DB_CONNECTION_STRING: postgres://OTOT-B-USER:OTOT-B-PW@host.docker.internal:5433/OTOT-B
+    volumes:
+      - ./server:/app
+      - server-mods:/app/node_modules
     ports:
       - 4000:4000
+  database:
+    image: postgres:12.7
+    container_name: database
+    restart: always
+    environment:
+      POSTGRES_USER: OTOT-B-USER
+      POSTGRES_PASSWORD: OTOT-B-PW
+      POSTGRES_DB: OTOT-B
     volumes:
-      - ./server/:/usr/app/
+      - ./server/migrations:/docker-entrypoint-initdb.d/
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
 
 volumes:
-  client-mods:
-  client-next:
+  server-mods:
+  db-data:

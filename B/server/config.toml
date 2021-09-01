@@ -1,5 +1,0 @@
-title="project config"
-debug=true
-contextTimeout="2"
-[server]
-  address= ":9090"
