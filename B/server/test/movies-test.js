@@ -13,7 +13,7 @@ chai.use(chaiHttp)
 /*
  * Test the /GET route
  */
-describe('/GET book', () => {
+describe('/GET movies', () => {
   it('it should GET all the movies', (done) => {
     chai
       .request(server)
@@ -22,6 +22,45 @@ describe('/GET book', () => {
         res.should.have.status(200)
         res.body.should.be.a('array')
         res.body.length.should.be.eql(0)
+        done()
+      })
+  })
+})
+
+/*
+ * Test the /POST route
+ */
+describe('/POST movie', () => {
+  it('it should POST a movie to database', (done) => {
+    let movie = {
+      movie_name: 'Spiderman: Far From Home',
+      director_name: 'Jon Watts',
+      year_released: 2019,
+      duration: 130,
+      imdb_rating: 7.5,
+    }
+    chai
+      .request(server)
+      .post('/api/movie')
+      .send(movie)
+      .end((err, res) => {
+        res.should.have.status(200)
+        res.body.should.be.a('array')
+        res.body.length.should.be.eql(1)
+        done()
+      })
+  })
+})
+
+describe('/GET movies', () => {
+  it('it should GET all the movies', (done) => {
+    chai
+      .request(server)
+      .get('/api/movies')
+      .end((err, res) => {
+        res.should.have.status(200)
+        res.body.should.be.a('array')
+        res.body.length.should.be.eql(1)
         done()
       })
   })
