@@ -8,12 +8,6 @@ const pool = new Pool({
     connectionString,
 })
 
-pool.connect((err) => {
-    if (!err) {
-        console.log('PostgreSQL database is connected!')
-    } else {
-        console.log('PostgreSQL database failed to connect!')
-    }
-})
+console.log('Initialised PostgreSQL connection pool')
 
 module.exports = pool
