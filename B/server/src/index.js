@@ -4,7 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 require('dotenv').config();
 const { errorHandler, notFound } = require('./middleware/middleware');
-const doctorRoutes = require('./routes/doctor');
+const movieRoutes = require('./routes/movies');
 
 const app = express();
 
@@ -16,10 +16,10 @@ app.use(helmet());
 
 app.get('/', (req, res) => {
   res.json({
-    route: 'Welcome to application server!',
+    route: 'Welcome to the NodeJS app!',
   });
 });
-app.use('/api', doctorRoutes);
+app.use('/api', movieRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
