@@ -8,10 +8,9 @@ services:
     container_name: server
     restart: always
     environment:
-      DB_CONNECTION_STRING: postgres://OTOT-B-USER:OTOT-B-PW@host.docker.internal:5433/OTOT-B
+      NODE_ENV: DEV
     volumes:
       - ./server:/app
-      # - server-mods:/app/node_modules
     ports:
       - 4000:4000
   database:
@@ -29,5 +28,4 @@ services:
       - 5433:5432
 
 volumes:
-  # server-mods:
   db-data:
