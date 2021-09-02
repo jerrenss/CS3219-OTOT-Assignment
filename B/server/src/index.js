@@ -1,31 +1,31 @@
-const express = require('express');
-const helmet = require('helmet');
-const cors = require('cors');
-const morgan = require('morgan');
-require('dotenv').config();
-const { errorHandler, notFound } = require('./middleware/middleware');
-const movieRoutes = require('./routes/movies');
+const express = require('express')
+const helmet = require('helmet')
+const cors = require('cors')
+const morgan = require('morgan')
+require('dotenv').config()
+const { errorHandler, notFound } = require('./middleware/middleware')
+const movieRoutes = require('./routes/movies')
 
-const app = express();
+const app = express()
 
-app.use(cors());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(morgan('dev'));
-app.use(helmet());
+app.use(cors())
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
+app.use(morgan('dev'))
+app.use(helmet())
 
 app.get('/', (req, res) => {
-  res.json({
-    route: 'Welcome to the NodeJS app!',
-  });
-});
-app.use('/api', movieRoutes);
+    res.json({
+        route: 'Welcome to the NodeJS app!',
+    })
+})
+app.use('/api', movieRoutes)
 
-app.use(notFound);
-app.use(errorHandler);
+app.use(notFound)
+app.use(errorHandler)
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4000
 
 app.listen(PORT, () => {
-  console.log(`Listening on port: ${PORT}`);
-});
+    console.log(`Listening on port: ${PORT}`)
+})

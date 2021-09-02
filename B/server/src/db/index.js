@@ -1,12 +1,12 @@
-const { Pool } = require('pg');
-const dotenv = require('dotenv');
-dotenv.config();
+const { Pool } = require('pg')
+const dotenv = require('dotenv')
+dotenv.config()
 
 const connectionString = process.env.DB_CONNECTION_STRING
 
 const pool = new Pool({
-    connectionString
-});
+    connectionString,
+})
 
 pool.connect((err) => {
     if (!err) {
@@ -16,4 +16,4 @@ pool.connect((err) => {
     }
 })
 
-module.exports = pool;
+module.exports = pool
