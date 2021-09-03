@@ -1,6 +1,4 @@
-/B/client/.next
-/B/client/node_modules
-/B/server/tmp
+/B/server/node_modules
 
 /C/server/tmp
 

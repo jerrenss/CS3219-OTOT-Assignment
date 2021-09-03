@@ -1,10 +1,26 @@
-FROM golang:1.15.5-alpine
+# Use node alpine as it's a small node image
+FROM node:alpine
 
-RUN apk update && apk add git make openssh-client curl
+# Create the directory on the node image 
+# where our Express app will live
+RUN mkdir -p /app
 
-WORKDIR /usr/app/
+# Set /app as the working directory
+WORKDIR /app
 
-RUN curl -fLo install.sh https://raw.githubusercontent.com/cosmtrek/air/master/install.sh \
-    && chmod +x install.sh && sh install.sh && cp ./bin/air /bin/air
+# Copy package.json and yarn.lock
+# to the /app working directory
+COPY package*.json /app
+COPY yarn.lock /app
 
-CMD air
+# Install dependencies in /app
+RUN yarn install
+
+# Copy the rest of our Express folder into /app
+COPY . /app
+
+# Ensure port 3000 is accessible to our system
+EXPOSE 4000
+
+# Run yarn dev, as we would via the command line 
+CMD ["yarn", "dev"]
