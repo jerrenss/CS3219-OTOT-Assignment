@@ -29,6 +29,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: google-github-actions/deploy-appengine@main
+        deliverables: B/server/app.yaml
         with:
           credentials: ${{ secrets.gcp_credentials }}
-        working-directory: B/server
