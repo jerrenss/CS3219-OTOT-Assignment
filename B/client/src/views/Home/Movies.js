@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
@@ -8,6 +8,7 @@ import Avatar from '@material-ui/core/Avatar'
 import ImageIcon from '@material-ui/icons/Image'
 import WorkIcon from '@material-ui/icons/Work'
 import BeachAccessIcon from '@material-ui/icons/BeachAccess'
+import { getMovies } from '../../api/movies'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,6 +20,16 @@ const useStyles = makeStyles((theme) => ({
 
 const Movies = () => {
   const classes = useStyles()
+  useEffect(() => {
+    getMovies()
+      .then((res) => {
+        return res.json()
+      })
+      .then((data) => {
+        console.log(data)
+      })
+      .catch((err) => alert(err))
+  }, [])
 
   return (
     <List className={classes.root}>
