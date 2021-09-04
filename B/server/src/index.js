@@ -16,7 +16,7 @@ app.use(helmet())
 
 app.get('/', (req, res) => {
   res.json({
-    route: 'Welcome to the NodeJS app!',
+    data: 'Welcome to OTOT-B NodeJS app!',
   })
 })
 app.use('/api', movieRoutes)
