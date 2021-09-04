@@ -1,6 +1,17 @@
 version: "3"
 
 services:
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: client
+    ports: 
+      - 3000:3000
+    volumes:
+      - ./client:/app
+    depends_on: 
+      - server
   server:
     build:
         context: ./server
@@ -13,6 +24,8 @@ services:
       - ./server:/app
     ports:
       - 4000:4000
+    depends_on: 
+      - database
   database:
     image: postgres:12.7
     container_name: database
