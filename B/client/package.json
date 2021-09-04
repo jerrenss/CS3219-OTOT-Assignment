@@ -12,6 +12,7 @@
     "@material-ui/core": "latest",
     "@material-ui/icons": "^4.11.2",
     "clsx": "latest",
+    "material-table": "^1.69.3",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest"

@@ -1,63 +1,120 @@
-import React, { useEffect } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
-import ListItemAvatar from '@material-ui/core/ListItemAvatar'
-import Avatar from '@material-ui/core/Avatar'
-import ImageIcon from '@material-ui/icons/Image'
-import WorkIcon from '@material-ui/icons/Work'
-import BeachAccessIcon from '@material-ui/icons/BeachAccess'
-import { getMovies } from '../../api/movies'
+import React, { useState, useEffect } from 'react'
+import MaterialTable from 'material-table'
+import { getMovies, addMovie, updateMovie, deleteMovie } from '../../api/movies'
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+const columns = [
+  { title: 'Title', field: 'movie_name' },
+  {
+    title: 'ID',
+    field: 'movie_id',
+    type: 'numeric',
+    editable: 'never',
+    defaultSort: 'asc',
   },
-}))
+  { title: 'Director', field: 'director_name' },
+  { title: 'Released', field: 'year_released', type: 'numeric' },
+  { title: 'Duration', field: 'duration', type: 'numeric' },
+  { title: 'IMDB Rating', field: 'imdb_rating', type: 'numeric' },
+]
 
 const Movies = () => {
-  const classes = useStyles()
+  const [movies, setMovies] = useState([])
   useEffect(() => {
     getMovies()
-      .then((res) => {
-        return res.json()
-      })
+      .then((res) => res.json())
       .then((data) => {
-        console.log(data)
+        setMovies(data)
       })
       .catch((err) => alert(err))
   }, [])
 
   return (
-    <List className={classes.root}>
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <ImageIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Photos" secondary="Jan 9, 2014" />
-      </ListItem>
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <WorkIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Work" secondary="Jan 7, 2014" />
-      </ListItem>
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <BeachAccessIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Vacation" secondary="July 20, 2014" />
-      </ListItem>
-    </List>
+    <MaterialTable
+      title="Movies"
+      columns={columns?.map((c) => ({
+        ...c,
+        tableData: undefined,
+      }))}
+      data={movies}
+      style={{ width: 1000 }}
+      options={{
+        paging: true,
+        pageSize: 10,
+        emptyRowsWhenPaging: false,
+        pageSizeOptions: [5, 10, 20],
+      }}
+      editable={{
+        onRowAdd: (newData) =>
+          new Promise((resolve) => {
+            setTimeout(() => {
+              resolve()
+              const data = [...movies]
+              data.push(newData)
+              setMovies(data)
+              addMovie(newData)
+                .then((res) => {
+                  if (res.ok) {
+                    return res.json()
+                  } else {
+                    throw new Error('Error adding movie')
+                  }
+                })
+                .then((data) => {
+                  window.location.reload()
+                  return data
+                })
+                .catch((err) => {
+                  alert(err)
+                  window.location.reload()
+                })
+            }, 600)
+          }),
+        onRowUpdate: (newData, oldData) =>
+          new Promise((resolve) => {
+            setTimeout(() => {
+              resolve()
+              const data = [...movies]
+              data[data.indexOf(oldData)] = newData
+              setMovies(data)
+              updateMovie(oldData.movie_id, newData)
+                .then((res) => {
+                  if (res.ok) {
+                    return res.json()
+                  } else {
+                    throw new Error('Error updating movie')
+                  }
+                })
+                .then((data) => data)
+                .catch((err) => {
+                  alert(err)
+                  window.location.reload()
+                })
+            }, 600)
+          }),
+        onRowDelete: (oldData) =>
+          new Promise((resolve) => {
+            setTimeout(() => {
+              resolve()
+              const data = [...movies]
+              data.splice(data.indexOf(oldData), 1)
+              setMovies(data)
+              deleteMovie(oldData.movie_id)
+                .then((res) => {
+                  if (res.ok) {
+                    return res.json()
+                  } else {
+                    throw new Error('Error deleting movie')
+                  }
+                })
+                .then((data) => data)
+                .catch((err) => {
+                  alert(err)
+                  window.location.reload()
+                })
+            }, 600)
+          }),
+      }}
+    />
   )
 }
 

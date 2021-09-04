@@ -2,6 +2,7 @@ import React from 'react'
 import { Box, Link, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import Movies from './Movies'
+import theme from '../../theme'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -16,12 +17,20 @@ const useStyles = makeStyles(() => ({
   heading: {
     fontSize: '64px',
     textAlign: 'center',
+    marginBottom: '16px',
+  },
+  copyright: {
+    marginTop: theme.spacing(1),
+    color: '#FFFFFF',
+    fontWeight: 500,
   },
 }))
 
 const Copyright = () => {
+  const classes = useStyles()
+
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography className={classes.copyright} variant="body2" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
         Gerren Seow

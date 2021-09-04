@@ -1,5 +1,6 @@
 /B/server/node_modules
 /B/client/node_modules
+/B/client/build
 
 /C/server/tmp
 
