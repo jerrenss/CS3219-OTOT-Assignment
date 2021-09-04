@@ -7,14 +7,11 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [14.x]
-
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
@@ -24,4 +21,14 @@ jobs:
       - run: yarn
         working-directory: B/server
       - run: yarn test
+        working-directory: B/server
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: google-github-actions/deploy-appengine@main
+        with:
+          credentials: ${{ secrets.gcp_credentials }}
         working-directory: B/server
