@@ -8,16 +8,6 @@
     "start": "NODE_ENV=PROD node src/index.js",
     "test": "cd test && chmod +x run-test.sh && ./run-test.sh"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Ath3r/node-server.git"
-  },
-  "author": "Ather Hussain",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Ath3r/node-server/issues"
-  },
-  "homepage": "https://github.com/Ath3r/node-server#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^9.0.0",
