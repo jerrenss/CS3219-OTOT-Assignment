@@ -4,7 +4,7 @@ Student: Seow Wei Xiang Gerren
 
 Matriculation Number: A0189437M
 
-GitHub Repository: https://github.com/jerrenss/CS3219-OTOT-Assignment/
+GitHub Repository: [https://github.com/jerrenss/CS3219-OTOT-Assignment/](https://github.com/jerrenss/CS3219-OTOT-Assignment/)
 
 Description: A full-stack application developed with ReactJS, NodeJS and PostgreSQL. Orchestration is done with Docker-Compose. Google App Engine is the platform used for backend deployment.
 
@@ -87,15 +87,17 @@ The deployed application URL is https://cs3219-otot-324906.as.r.appspot.com/. Si
         yarn test
 
 ## Running Tests in CI:
-Tests are ran automatically by GitHub Actions whenever a Pull Request is made to master branch, and when new commits are merged into master branch. Here are the relevant screenshots:
+Tests are ran automatically by GitHub Actions whenever a Pull Request is made to master branch, and when new commits are merged into master branch. The Task-B-Test.yml located in the .github/workflows folder contains the configuration. Running the test suite with Yarn is the final step in the configuration, after dependencies are installed. Here are the relevant screenshots:
 
-[Insert images here]
+![GitHub Actions Test Output](./docs/GA-Test-Output.png)
 
 ## Continuous Deployment
-Deployment of NodeJS application is done with the help of GitHub Actions as well. Upon merging of commits into master and passing of the **Task B Test** workflow, the **Task B Deploy** workflow will be triggered. The application is then deployed to Google App Engine automatically. Here are the relevant screenshots:
+Deployment of NodeJS application is done with the help of GitHub Actions as well. Upon merging of commits into master and passing of the **Task B Test** workflow, the **Task B Deploy** workflow will be triggered. The application is then deployed to Google App Engine automatically. The Task-B-Deploy.yml located in the .github/workflows folder contains the configuration. Here are the relevant screenshots:
 
-[Insert images here]
+![GitHub Actions Deploy Output](./docs/GA-Deploy-Output.png)
 
 ## Frontend
 Docker Compose is used to orchestrate containers in this task. Hence, frontend and backend applications would have been launched concurrently. Access the frontend SPA 
-at http://localhost:3000, and interact with the UI, which have been configured to make requests to the backend APIs.
+at http://localhost:3000, and interact with the UI, which have been configured to make requests to the backend APIs. All the APIs are being leveraged (GET, POST, PUT and DELETE). Styling is done with Material UI and table is created with Material Table.
+
+![Frontend Landing Page](./docs/FE-Landing-Page.png)
