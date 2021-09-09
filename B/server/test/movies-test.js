@@ -39,7 +39,7 @@ describe('/GET movies', () => {
 })
 
 /*
- * Test the /POST route
+ * Test the /POST route (positive)
  */
 describe('/POST movie', () => {
   it('it should POST a movie to database', (done) => {
@@ -65,7 +65,54 @@ describe('/POST movie', () => {
 })
 
 /*
- * Test the /PUT route
+ * Test the /POST route (negative)
+ */
+describe('/POST movie with duplicate name', () => {
+  it('it should return error response after POST', (done) => {
+    let movie = {
+      movie_name: 'Spiderman: Far From Home',
+      director_name: 'Jon Watts',
+      year_released: 2019,
+      duration: 130,
+      imdb_rating: 7.5,
+    }
+    chai
+      .request(server)
+      .post('/api/movie')
+      .send(movie)
+      .end((err, res) => {
+        res.should.have.status(400)
+        expect(res.body).to.have.property('errMsg', 'Movie already exists')
+        done()
+      })
+  })
+})
+
+/*
+ * Test the /POST route (negative)
+ */
+describe('/POST movie with missing field', () => {
+  it('it should return error response after POST', (done) => {
+    let movie = {
+      movie_name: 'Spiderman: Far From Home 2',
+      year_released: 2019,
+      duration: 130,
+      imdb_rating: 7.5,
+    }
+    chai
+      .request(server)
+      .post('/api/movie')
+      .send(movie)
+      .end((err, res) => {
+        res.should.have.status(400)
+        expect(res.body).to.have.property('errMsg', 'Missing fields in request')
+        done()
+      })
+  })
+})
+
+/*
+ * Test the /PUT route (positive)
  */
 describe('/PUT movie', () => {
   it('it should PUT a movie in database', (done) => {
@@ -90,6 +137,29 @@ describe('/PUT movie', () => {
           'Spiderman: Far From Home 2'
         )
         expect(res.body[0]).to.have.property('imdb_rating', '8.2')
+        done()
+      })
+  })
+})
+
+/*
+ * Test the /PUT route (negative)
+ */
+describe('/PUT movie movie with missing field', () => {
+  it('it should return error response after PUT', (done) => {
+    let updatedMovie = {
+      movie_name: 'Spiderman: Far From Home 3',
+      year_released: 2019,
+      duration: 130,
+      imdb_rating: 8.2,
+    }
+    chai
+      .request(server)
+      .put('/api/movie/1')
+      .send(updatedMovie)
+      .end((err, res) => {
+        res.should.have.status(400)
+        expect(res.body).to.have.property('errMsg', 'Missing fields in request')
         done()
       })
   })
