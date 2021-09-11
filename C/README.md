@@ -1,6 +1,12 @@
 # Task C: Authentication and Authorisation Task
 
-This task is completed with a local Go and PostgreSQL server. Production use cases of Authentication and Authorisation are demonstrated through APIs.
+Student: Seow Wei Xiang Gerren
+
+Matriculation Number: A0189437M
+
+GitHub Repository: [https://github.com/jerrenss/CS3219-OTOT-Assignment/](https://github.com/jerrenss/CS3219-OTOT-Assignment/)
+
+Description: This task is completed with a local Go and PostgreSQL server. Production use cases of Authentication and Authorisation are demonstrated through APIs.
 
 ## Instructions for setup:
 1. Ensure Docker and Docker Compose is installed in your workstation

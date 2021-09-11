@@ -1,6 +1,12 @@
 # Task A1: Introduction to Docker
 
-This task is completed with Nginx serving as the reverse proxy for a Go application. Dockerfiles are written for both Nginx and Go application, and the containers are orchestrated by Docker Compose.
+Student: Seow Wei Xiang Gerren
+
+Matriculation Number: A0189437M
+
+GitHub Repository: [https://github.com/jerrenss/CS3219-OTOT-Assignment/](https://github.com/jerrenss/CS3219-OTOT-Assignment/)
+
+Description: This task is completed with Nginx serving as the reverse proxy for a Go application. Dockerfiles are written for both Nginx and Go application, and the containers are orchestrated by Docker Compose.
 
 ## Instructions for setup:
 1. Ensure Docker and Docker Compose is installed in your workstation
