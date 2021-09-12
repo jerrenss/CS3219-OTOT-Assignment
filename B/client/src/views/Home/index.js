@@ -1,8 +1,9 @@
 import React from 'react'
-import { Box, Link, Typography } from '@material-ui/core'
+import { Box, Button, Link, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import Movies from './Movies'
 import theme from '../../theme'
+import { setCookie, clearCookie } from '../../api/movies'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -25,6 +26,20 @@ const useStyles = makeStyles(() => ({
     fontWeight: 500,
   },
 }))
+
+const handleSetCookie = () => {
+  setCookie()
+    .then((res) => res.json())
+    .then((data) => data)
+    .catch((err) => alert(err))
+}
+
+const handleClearCookie = () => {
+  clearCookie()
+    .then((res) => res.json())
+    .then((data) => data)
+    .catch((err) => alert(err))
+}
 
 const Copyright = () => {
   const classes = useStyles()
@@ -50,6 +65,13 @@ const Home = () => {
       </Typography>
       <Movies />
       <Copyright />
+      <Button variant="contained" onClick={handleSetCookie}>
+        Set Cookie
+      </Button>
+      <hr />
+      <Button variant="contained" onClick={handleClearCookie}>
+        Clear Cookie
+      </Button>
     </Box>
   )
 }

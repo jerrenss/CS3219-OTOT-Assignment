@@ -29,3 +29,11 @@ export const deleteMovie = (id) => {
     method: 'DELETE',
   })
 }
+
+export const setCookie = () => {
+  return fetch('/api/setCookie')
+}
+
+export const clearCookie = () => {
+  return fetch('/api/clearCookie')
+}
