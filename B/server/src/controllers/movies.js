@@ -65,11 +65,19 @@ exports.deleteMovie = async (req, res) => {
 }
 
 exports.setCookie = async (req, res) => {
-  res.cookie('cookieName', 'cookieValue')
-  res.status(200).json({})
+  res.cookie('cookieName', 'cookieValue', { maxAge: 900000, httpOnly: true })
+  res.status(200).json({ data: 'successfully set cookie' })
 }
 
 exports.clearCookie = async (req, res) => {
   res.clearCookie('cookieName')
-  res.status(200).json({})
+  res.status(200).json({ data: 'successfully cleared cookie' })
+}
+
+exports.extractCookie = async (req, res) => {
+  if (req.cookies['cookieName']) {
+    res.status(200).json({ data: req.cookies['cookieName'] })
+  } else {
+    res.status(400).json({ data: 'cookie not found' })
+  }
 }

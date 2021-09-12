@@ -6,6 +6,7 @@ const {
   deleteMovie,
   setCookie,
   clearCookie,
+  extractCookie,
 } = require('../controllers/movies')
 const router = express.Router()
 
@@ -15,5 +16,6 @@ router.put('/movie/:id', updateMovie)
 router.delete('/movie/:id', deleteMovie)
 router.get('/setCookie', setCookie)
 router.get('/clearCookie', clearCookie)
+router.get('/extractCookie', extractCookie)
 
 module.exports = router

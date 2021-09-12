@@ -3,7 +3,7 @@ import { Box, Button, Link, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import Movies from './Movies'
 import theme from '../../theme'
-import { setCookie, clearCookie } from '../../api/movies'
+import { setCookie, clearCookie, extractCookie } from '../../api/movies'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -41,6 +41,13 @@ const handleClearCookie = () => {
     .catch((err) => alert(err))
 }
 
+const handleExtractCookie = () => {
+  extractCookie()
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+    .catch((err) => alert(err))
+}
+
 const Copyright = () => {
   const classes = useStyles()
 
@@ -71,6 +78,10 @@ const Home = () => {
       <hr />
       <Button variant="contained" onClick={handleClearCookie}>
         Clear Cookie
+      </Button>
+      <hr />
+      <Button variant="contained" onClick={handleExtractCookie}>
+        Get Cookie
       </Button>
     </Box>
   )

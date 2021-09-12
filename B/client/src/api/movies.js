@@ -37,3 +37,7 @@ export const setCookie = () => {
 export const clearCookie = () => {
   return fetch('/api/clearCookie')
 }
+
+export const extractCookie = () => {
+  return fetch('/api/extractCookie')
+}
