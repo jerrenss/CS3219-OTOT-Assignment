@@ -1,9 +1,13 @@
+const baseURL = 'https://api.upskilltoday.org'
+
 export const getMovies = () => {
-  return fetch('/api/movies')
+  return fetch(`${baseURL}/api/movies`, {
+    credentials: 'include',
+  })
 }
 
 export const addMovie = (movie) => {
-  return fetch('/api/movie', {
+  return fetch(`${baseURL}/api/movie`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -14,7 +18,7 @@ export const addMovie = (movie) => {
 }
 
 export const updateMovie = (id, movie) => {
-  return fetch(`/api/movie/${id}`, {
+  return fetch(`${baseURL}/api/movie/${id}`, {
     method: 'PUT',
     headers: {
       Accept: 'application/json',
@@ -25,19 +29,25 @@ export const updateMovie = (id, movie) => {
 }
 
 export const deleteMovie = (id) => {
-  return fetch(`/api/movie/${id}`, {
+  return fetch(`${baseURL}/api/movie/${id}`, {
     method: 'DELETE',
   })
 }
 
 export const setCookie = () => {
-  return fetch('/api/setCookie')
+  return fetch(`${baseURL}/api/setCookie`, {
+    credentials: 'include',
+  })
 }
 
 export const clearCookie = () => {
-  return fetch('/api/clearCookie')
+  return fetch(`${baseURL}/api/clearCookie`, {
+    credentials: 'include',
+  })
 }
 
 export const extractCookie = () => {
-  return fetch('/api/extractCookie')
+  return fetch(`${baseURL}/api/extractCookie`, {
+    credentials: 'include',
+  })
 }

@@ -1,4 +1,6 @@
 const pool = require('../db')
+const dotenv = require('dotenv')
+dotenv.config()
 
 function errorHandler(res, err) {
   switch (err.code) {
@@ -65,18 +67,32 @@ exports.deleteMovie = async (req, res) => {
 }
 
 exports.setCookie = async (req, res) => {
-  res.cookie('cookieName', 'cookieValue', { maxAge: 900000, httpOnly: true })
+  // Set cookie based on environment
+  if (process.env.NODE_ENV === 'PROD') {
+    console.log('setting cookie in prod')
+    res.cookie('__session', 'cookieValue', {
+      maxAge: 900000,
+      httpOnly: true,
+      domain: 'upskilltoday.org',
+    })
+  } else {
+    res.cookie('__session', 'cookieValue', { maxAge: 900000, httpOnly: true })
+  }
   res.status(200).json({ data: 'successfully set cookie' })
 }
 
 exports.clearCookie = async (req, res) => {
-  res.clearCookie('cookieName')
+  if (process.env.NODE_ENV === 'PROD') {
+    res.clearCookie('__session', { domain: 'upskilltoday.org' })
+  } else {
+    res.clearCookie('__session')
+  }
   res.status(200).json({ data: 'successfully cleared cookie' })
 }
 
 exports.extractCookie = async (req, res) => {
-  if (req.cookies['cookieName']) {
-    res.status(200).json({ data: req.cookies['cookieName'] })
+  if (req.cookies['__session']) {
+    res.status(200).json({ data: req.cookies['__session'] })
   } else {
     res.status(400).json({ data: 'cookie not found' })
   }

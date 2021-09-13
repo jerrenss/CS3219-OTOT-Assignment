@@ -2,18 +2,9 @@
   "hosting": {
     "public": "build",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-    "rewrites": [
-      {
-        "source": "/api/**",
-        "run": {
-          "serviceId": "otot-b-server",
-          "region": "asia-southeast1"
-        }
-      }
-    ],
     "headers": [
       {
-        "source": "/api/**",
+        "source": "https://api.upskilltoday.org/api/**",
         "headers": [
           {
             "key": "Cache-Control",

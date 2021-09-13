@@ -9,7 +9,7 @@ const movieRoutes = require('./routes/movies')
 
 const app = express()
 
-app.use(cors())
+app.use(cors({ credentials: true, origin: 'https://upskilltoday.org' }))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(morgan('dev'))
