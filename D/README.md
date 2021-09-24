@@ -1,6 +1,12 @@
 # Task D: Pub-Sub Messaging
 
-This task is completed with a 3-node Apache Kafka cluster using Docker, together with a Zookeeper ensemble used to manage the cluster.
+Student: Seow Wei Xiang Gerren
+
+Matriculation Number: A0189437M
+
+GitHub Repository: [https://github.com/jerrenss/CS3219-OTOT-Assignment/](https://github.com/jerrenss/CS3219-OTOT-Assignment/)
+
+Description: This task is completed with a 3-node Apache Kafka cluster using Docker, together with a Zookeeper ensemble used to manage the cluster.
 
 ## Instructions for setup
 1. Ensure Docker and Docker Compose is installed in your workstation
@@ -31,7 +37,7 @@ Here are the series of steps and screenshots used to demonstrate messaging betwe
       <img src="./docs/List-Containers.png"> 
     </div>
    
-2. Check that test topic has been automatically created. We can observe the replication factor of the topic, its partition count and master node, which are 3, 1 and 3 in this case.
+2. Check that **test_topic** has been automatically created from Docker Compose file. We can observe the replication factor of the topic, its partition count and master node, which are 3, 1 and 3 in this case. *(Note that for subsequent commands, the bootstrap server field should not be the master node. Eg. master node is 3, so we shall use node 1 / 2 as the bootstrap server. This prevents error in running commands once master node is replaced, as we continue with the demonstration)*.
   
         docker run \
         --rm \
@@ -72,7 +78,7 @@ Here are the series of steps and screenshots used to demonstrate messaging betwe
 
 
 ## Successful Management of Master Node Failure 
-Here are the series of steps and screenshots used to demonstrate messaging between a producer and consumer, with Apache Kafka
+Here are the series of steps and screenshots used to demonstrate removal of a master node, and an automatic takeover by another.
 1. Kill the master Kafka node, which is this case is node 3.
   
         docker stop kafka3
